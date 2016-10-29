@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, request, redirect, url_for
-<<<<<<< HEAD
-import location
-=======
 from flask_socketio import SocketIO, emit
->>>>>>> backend-r
+import location
+
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecret!'
