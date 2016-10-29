@@ -3,10 +3,45 @@
   <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
     <div id="container">
       <h1>Test</h1>
     </div>
   </body>
+  <script type="text/babel">
+    var display = document.getElementById("container");
+
+    var LoginDisplay = React.createClass({
+
+      render: function(){
+        return(
+          <div className="jumbotron row redfg" id="bigass">
+            <div className="col-md-4 white">
+              <form action="." method="POST">
+
+                <div className="form-group">
+                  <label htmlFor="user">Username:</label>
+                  <input name = "userName" type="text" className="form-control" id="user" placeholder = 'Enter Your Name'></input>
+                </div>
+                <input type = "submit" className="btn btn-default" name = "my-form" value = "Log In"></input>
+              </form>
+            </div>
+          </div>
+        )
+      }
+    })
+
+    ReactDOM.render(
+      (<div className="container white">
+        <h1>Login to PiChat</h1>
+        <LoginDisplay/>
+      </div>),
+      display
+    )
+  </script>
 </html>
