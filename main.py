@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import location
 
 app=Flask(__name__)
 
@@ -9,12 +10,12 @@ def login():
 @app.route('/', methods=['POST'])
 def afterLogin():
     userName = request.form['userName']
-    print(url_for('avaliableRooms'))
     return redirect(url_for('avaliableRooms'))
 
 @app.route('/rooms')
 def avaliableRooms():
-    return render_template("rooms.html")
+    temp = location.getLocation()
+    return str(temp)
 
 if __name__ == '__main__':
     app.run(debug= True, host='0.0.0.0')
