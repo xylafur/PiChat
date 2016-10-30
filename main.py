@@ -46,7 +46,7 @@ def afterLogin():
 @app.route('/rooms')
 def avaliableRooms():
     temp = location.getLocation()
-    return str(temp)
+    return render_template("rooms.html")
 
 
 #===========Main===========#

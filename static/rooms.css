@@ -1,0 +1,31 @@
+.main{
+  padding: 20px;
+  display: flex;
+}
+.scroll {
+  padding: 10px;
+  width: 75%;
+  min-height: 50vh;
+  height: 90;
+  max-height: 50vh;
+  border:1px solid #ccc;
+  overflow:auto;
+  background-color: white;
+  color:black;
+}
+.selector{
+  padding-left:10px;
+  width:50%;
+}
+.join{
+  display:block;
+  margin:auto;
+}
+.create{
+  display:block;
+  margin:auto;
+
+}
+.createform{
+  padding: 50px;
+}
