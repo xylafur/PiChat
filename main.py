@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from functools import wraps
 
-import location, roommanager, usermanager, availablerooms
+import location, roommanager, usermanager
 
 #from pyback.user import User
 #import pyback.util
