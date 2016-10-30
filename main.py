@@ -38,12 +38,11 @@ def handle_message(message):
 
 
 
-#=========== app route stuff ==========#
+@socketio.on('usermsg')
+def receivemessagefromuser(username, json):
+    print(('Received json from %s : ' % username) + str(json))
 
-#Delete this in replace with proper link to room.html
-@app.route('/chatroomtest')
-def chatrm():
-    return render_template("room.html")
+#=========== app route stuff ==========#
 
 @app.route('/', methods=['GET','POST'])
 def login():
