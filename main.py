@@ -36,11 +36,11 @@ def login_required(f):
 #import pyback.pychat
 
 @socketio.on('connect')
-def on_connect(data):
+def on_connect():
     send('connected.')
 
 @socketio.on('disconnect')
-def on_disconnect(data):
+def on_disconnect():
     global disconnected
     disconnected = '/'
 
@@ -97,9 +97,10 @@ def newRoom():
 
 @app.context_processor
 def utility_processor():
-    def createRoom(userJson):
+    def createRoom(userJson, name):
         print(userJson)
-        return("userJson")
+        roommanager.createRoom(userJson, name)
+        return "fuck"
     return dict(createRoom=createRoom)
 
 @app.route('/logout')
