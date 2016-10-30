@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, url_for, Response, session
+from flask import Flask, render_template, request, redirect, url_for, Response, session, flash
 from flask_login import LoginManager
 from flask_socketio import SocketIO, emit
 from functools import wraps
@@ -25,9 +25,6 @@ def login_required(f):
             return redirect(url_for('login'))
     return wrap
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
 
 
 
@@ -49,6 +46,7 @@ def login():
     if (request.method == 'POST'):
         userName = request.form['userName']
         session['logged_in'] = True
+        flash('You just logged in!')
         return redirect(url_for('avaliableRooms'))
     return render_template("index.html", error = None)
 
@@ -57,6 +55,7 @@ def login():
 @login_required
 def avaliableRooms():
     temp = location.getLocation()
+    flash('You just logged out.')
     return render_template("rooms.html")
 
 

@@ -6,6 +6,8 @@
 >>>>>>> master
 import json
 
+
+
 def getUser(username,location):
     name = username
     print name
