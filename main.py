@@ -29,18 +29,26 @@ def login_required(f):
 #=========== socketio stuff ===========#
 #import pyback.pychat
 
-@socketio.on('message')
+@socketio.on('message') #Generic message event to server, for log purposes.
 def handle_message(message):
     print('Received message: ' + message)
     send(message)
-    #handle message shit here
     return
 
+#Not yet used
+@socketio.on('userconnect')
+def handle_connected(username):
+    log = '%s connected. ' % (username)
+    print(log)
+    send(log)
+
+@socketio.on('chat message')
+def chat_message(username, message):
+    log = '[%s] : %s' % (username, message)
+    print(log)
+    send(log)
 
 
-@socketio.on('usermsg')
-def receivemessagefromuser(username, json):
-    print(('Received json from %s : ' % username) + str(json))
 
 #=========== app route stuff ==========#
 
