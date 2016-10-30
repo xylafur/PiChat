@@ -65,5 +65,9 @@
       //socket.emit('my event', {data: 'I\'m connected!'});
       socket.send('User has connected!')
     });
+
+    socket.on('usermsg', function(){
+      socket.emit('test username', '');
+    })
   </script>
 </html>
