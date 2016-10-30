@@ -4,7 +4,8 @@ from flask_login import LoginManager
 from flask_socketio import SocketIO, send, emit
 from functools import wraps
 
-import location, usermanager, avaliablerooms
+import location, roommanager, usermanager, availablerooms
+
 #from pyback.user import User
 #import pyback.util
 
@@ -51,9 +52,15 @@ def login():
 
     if (request.method == 'POST'):
         userName = request.form['userName']
+        userLocation = location.getLocation()
+        userJson = usermanager.getUser(userName, userLocation)
+
         session['logged_in'] = True
         flash('You just logged in!')
-        return redirect(url_for('avaliableRooms'))
+
+        #so now when we redirect to the url we are passing in the JSON
+        #string as a variable called newUser
+        return redirect(url_for('avaliableRooms', newUser = userJson))
     return render_template("index.html", error = None)
 
 
@@ -61,14 +68,27 @@ def login():
 @login_required
 def avaliableRooms():
     temp = location.getLocation()
-    flash('You just logged out.')
-    return render_template("rooms.html")
+    #gets the JSON variabe new user that is passed
+    newUser = request.args['newUser']
+    return render_template("rooms.html", newUser = newUser)
 
+@app.route('/create')
+@login_required
+def newRoom():
+    return redirect(url_for('avaliableRooms', newUser = userJson))
+
+@app.context_processor
+def utility_processor():
+    def createRoom():
+        print("userJson")
+        return("userJson")
+    return dict(createRoom=createRoom)
 
 @app.route('/logout')
 @login_required
 def logout():
     session.pop('logged_in', None)
+    flash('You just logged out.')
     return redirect(url_for('login'))
 
 #===========Main===========#
