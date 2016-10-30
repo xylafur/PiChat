@@ -14,9 +14,18 @@ class room:
     def updateText(self, inputText):
         self.text.append(inputText)
 
+<<<<<<< HEAD
 def userWithinRadius(userDict, room):
     maxDist = 10
     user = json.loads(userDict)
+=======
+allRooms = []
+
+def userWithinRadius(userJson, room):
+    #this takes in a a user as a JSON file and parses it
+    maxDist = 10
+    user = json.loads(userJson)
+>>>>>>> FrontEnd
     userLat = user["latitude"]
     userLon = user["longitude"]
 
@@ -28,3 +37,21 @@ def userWithinRadius(userDict, room):
         return True
     else:
         return False
+<<<<<<< HEAD
+=======
+
+#gonna return a list of all rooms within procimity
+def closeRooms(userJson):
+    #takes in a JSON of the user
+    #use getUser from gonzalo's usermanager to generate a JSON file to compare
+    roomsInRadius = []
+    for roomElement in allRooms:
+        if userWithinRadius(userJson, i):
+            roomsInRadius.append(roomElement)
+    return roomsInRadius
+
+#function to create a room
+def createRoom(userJson):
+    temp = room(userJson)
+    allRooms.append(temp)
+>>>>>>> FrontEnd
