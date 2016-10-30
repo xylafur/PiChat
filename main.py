@@ -6,9 +6,13 @@ from functools import wraps
 
 import location, roommanager, usermanager
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> FrontEnd
+=======
+
+>>>>>>> c310da3d692f24aea3f8b3405d2baa3f14007ed3
 #from pyback.user import User
 #import pyback.util
 
@@ -79,9 +83,13 @@ def login():
 
         session['logged_in'] = True
 <<<<<<< HEAD
+<<<<<<< HEAD
         flash('You just logged in!')
 =======
 >>>>>>> FrontEnd
+=======
+        flash('You just logged in!')
+>>>>>>> c310da3d692f24aea3f8b3405d2baa3f14007ed3
 
         #so now when we redirect to the url we are passing in the JSON
         #string as a variable called newUser
@@ -92,40 +100,19 @@ def login():
 @app.route('/rooms')
 @login_required
 def avaliableRooms():
-<<<<<<< HEAD
-    temp = location.getLocation()
-=======
->>>>>>> FrontEnd
     #gets the JSON variabe new user that is passed
     newUser = request.args['newUser']
     return render_template("rooms.html", newUser = newUser)
 
-<<<<<<< HEAD
 @app.route('/create')
 @login_required
 def newRoom():
-    return redirect(url_for('avaliableRooms', newUser = userJson))
-=======
-@app.route('chatroom')
-
-@app.route('/create')
-@login_required
-def newRoom():
-
     return redirect(url_for('avaliableRooms', newUser = userJson))
 
 @app.context_processor
 def utility_processor():
     def createRoom(userJson):
         print(userJson)
-        return("userJson")
-    return dict(createRoom=createRoom)
->>>>>>> FrontEnd
-
-@app.context_processor
-def utility_processor():
-    def createRoom():
-        print("userJson")
         return("userJson")
     return dict(createRoom=createRoom)
 
