@@ -3,6 +3,8 @@
 #import location
 import json
 
+
+
 def getUser(username,location):
     name = username
     print name
