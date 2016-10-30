@@ -57,7 +57,7 @@ def login():
 @login_required
 def avaliableRooms():
     temp = location.getLocation()
-    return str(temp)
+    return render_template("rooms.html")
 
 
 @app.route('/logout')
