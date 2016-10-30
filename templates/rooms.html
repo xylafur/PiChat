@@ -14,15 +14,7 @@
   </head>
   <body>
     <div id="container"></div>
-    <form class="form-group customform">
-    <input class = "join" type="submit" text="join" value = "Select Room"></input>
-
-    <div class = "createForm">
-      <input class = "create" type="text"></input>
-      <input class = "create" onClick={{createRoom()}} type="submit" text="join" value = "Create Room"></input>
-    </div>
-
-    </form>
+    
   </body>
 
   <script type="text/babel">
@@ -33,6 +25,9 @@
         return {
           rooms:["Test"]
         }
+      },
+      createRoom(){
+        {{createRoom(newUser)}}
       },
       render: function()
       {
@@ -48,7 +43,7 @@
 
                 <div className = "createForm">
                   <input className = "create" type="text"></input>
-                  <input className = "create" type="submit" text="join" value = "Create Room"></input>
+                  <input className = "create" onClick={this.createRoom}type="submit" text="join" value = "Create Room"></input>
                 </div>
 
                 </form>

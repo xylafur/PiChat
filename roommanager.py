@@ -41,11 +41,9 @@ def closeRooms(userJson):
         if userWithinRadius(userJson, i):
             roomsInRadius.append(roomElement)
     return roomsInRadius
-<<<<<<< HEAD
-=======
+
 
 #function to create a room
 def createRoom(userJson):
     temp = room(userJson)
     allRooms.append(temp)
->>>>>>> c310da3d692f24aea3f8b3405d2baa3f14007ed3
