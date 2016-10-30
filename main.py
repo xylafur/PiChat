@@ -36,9 +36,6 @@ def handle_message(message):
     print('Received message: ' + message)
     #handle message shit here
 
-#=========== app route stuff ==========#
-
-@app.route('/')
 
 #=========== app route stuff ==========#
 @app.route('/', methods=['GET','POST'])
@@ -48,7 +45,11 @@ def login():
 
     if (request.method == 'POST'):
         userName = request.form['userName']
+        location = location.getLocation()
         session['logged_in'] = True
+
+        
+
         return redirect(url_for('avaliableRooms'))
     return render_template("index.html", error = None)
 
