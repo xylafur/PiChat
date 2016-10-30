@@ -5,14 +5,7 @@ from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from functools import wraps
 
 import location, roommanager, usermanager
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> FrontEnd
-=======
-
->>>>>>> c310da3d692f24aea3f8b3405d2baa3f14007ed3
 #from pyback.user import User
 #import pyback.util
 
@@ -82,14 +75,7 @@ def login():
         userJson = usermanager.getUser(userName, userLocation)
 
         session['logged_in'] = True
-<<<<<<< HEAD
-<<<<<<< HEAD
         flash('You just logged in!')
-=======
->>>>>>> FrontEnd
-=======
-        flash('You just logged in!')
->>>>>>> c310da3d692f24aea3f8b3405d2baa3f14007ed3
 
         #so now when we redirect to the url we are passing in the JSON
         #string as a variable called newUser
