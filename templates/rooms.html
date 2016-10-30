@@ -3,10 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>Rooms</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
   </head>
   <body>
     <div id/"container">
       <h1>Placeholder</h1>
     </div>
   </body>
+  <script type="text/babel">
+
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    socket.on('connect', function() {
+      socket.emit('my event', {data: 'I\'m connected!'});
+    });
+  </script>
 </html>
