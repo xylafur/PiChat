@@ -1,1 +1,4 @@
 venv/*
+*.pyc
+pyback/*.pyc
+__pycache__/*

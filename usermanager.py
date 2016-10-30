@@ -1,6 +1,4 @@
-#!/usr/bin/python3
-#from flask import Flask, render_template, request, redirect, url_for
-#import location
+
 import json
 
 def getUser(username,location):
