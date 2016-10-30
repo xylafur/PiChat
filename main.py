@@ -64,13 +64,20 @@ def login():
 def avaliableRooms():
     #gets the JSON variabe new user that is passed
     newUser = request.args['newUser']
-    return render_template("rooms.html")
+    return render_template("rooms.html", newUser = newUser)
 
 @app.route('/create')
 @login_required
 def newRoom():
 
     return redirect(url_for('avaliableRooms', newUser = userJson))
+
+@app.context_processor
+def utility_processor():
+    def createRoom():
+        print("userJson")
+        return("userJson")
+    return dict(createRoom=createRoom)
 
 
 @app.route('/logout')
