@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
+from flask.ext.login import LoginManager
 from flask_socketio import SocketIO, emit
 import location
 import pyback.pychat
@@ -7,6 +8,10 @@ import pyback.pychat
 app=Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecret!'
 socketio = SocketIO(app)
+login_manager = LoginManager(app)
+#login_manager.init_app(app)
+
+#=========== session login stuff===========#
 
 
 #=========== socketio stuff ===========#
