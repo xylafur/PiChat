@@ -1,17 +1,34 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, request, redirect, url_for, Response
-from flask.ext.login import LoginManager
+from flask import Flask, render_template, request, redirect, url_for, Response, session
+from flask_login import LoginManager
 from flask_socketio import SocketIO, emit
+from functools import wraps
+
 import location
-import pyback.pychat
+#from pyback.user import User
+#import pyback.util
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecret!'
 socketio = SocketIO(app)
-login_manager = LoginManager(app)
-#login_manager.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 #=========== session login stuff===========#
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('You need to login first.')
+            return redirect(url_for('login'))
+    return wrap
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 
 
 #=========== socketio stuff ===========#
@@ -22,37 +39,32 @@ def handle_message(message):
     print('Received message: ' + message)
     #handle message shit here
 
-'''
-@socketio.on('json')
-def handle_json(json):
-    print('received json: ' + str(json))
-
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received json: ' + str(json))
-
-@socketio.on('my event')
-def handle_my_custom_event(arg1, arg2, arg3):
-    print('received args: ' + arg1 + arg2 + arg3)
-'''
-
 
 #=========== app route stuff ==========#
-
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def login():
-    return render_template("index.html")
+    if (request.method == 'GET'):
+        return render_template("index.html")
 
-@app.route('/', methods=['POST'])
-def afterLogin():
-    userName = request.form['userName']
-    return redirect(url_for('avaliableRooms'))
+    if (request.method == 'POST'):
+        userName = request.form['userName']
+        session['logged_in'] = True
+        return redirect(url_for('avaliableRooms'))
+    return render_template("index.html", error = None)
+
 
 @app.route('/rooms')
+@login_required
 def avaliableRooms():
     temp = location.getLocation()
     return str(temp)
 
+
+@app.route('/logout')
+@login_required
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
 
 #===========Main===========#
 if __name__ == '__main__':
