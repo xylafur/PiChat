@@ -1,10 +1,4 @@
-#!/usr/bin/python3
-<<<<<<< HEAD
-from flask import Flask, render_template, request, redirect, url_for
-from flask_socketio import SocketIO, emit
-import location
 
-=======
 from flask import Flask, render_template, request, redirect, url_for, Response, session
 from flask_login import LoginManager
 from flask_socketio import SocketIO, emit
@@ -13,7 +7,6 @@ from functools import wraps
 import location
 #from pyback.user import User
 #import pyback.util
->>>>>>> backend-r
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecret!'
