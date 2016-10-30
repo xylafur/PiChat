@@ -66,6 +66,8 @@ def avaliableRooms():
     newUser = request.args['newUser']
     return render_template("rooms.html", newUser = newUser)
 
+@app.route('chatroom')
+
 @app.route('/create')
 @login_required
 def newRoom():
@@ -74,8 +76,8 @@ def newRoom():
 
 @app.context_processor
 def utility_processor():
-    def createRoom():
-        print("userJson")
+    def createRoom(userJson):
+        print(userJson)
         return("userJson")
     return dict(createRoom=createRoom)
 

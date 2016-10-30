@@ -19,7 +19,7 @@
 
     <div class = "createForm">
       <input class = "create" type="text"></input>
-      <input class = "create" onClick={{createRoom()}} type="submit" text="join" value = "Create Room"></input>
+      <input class = "create" type="submit" text="join" value = "Create Room"></input>
     </div>
 
     </form>
@@ -33,6 +33,9 @@
         return {
           rooms:["Test"]
         }
+      },
+      createRoom(){
+        {{createRoom(newUser)}}
       },
       render: function()
       {
@@ -48,7 +51,7 @@
 
                 <div className = "createForm">
                   <input className = "create" type="text"></input>
-                  <input className = "create" type="submit" text="join" value = "Create Room"></input>
+                  <input className = "create" onClick={this.createRoom}type="submit" text="join" value = "Create Room"></input>
                 </div>
 
                 </form>
