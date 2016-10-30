@@ -52,6 +52,9 @@ def login():
         userJson = usermanager.getUser(userName, userLocation)
 
         session['logged_in'] = True
+
+        #so now when we redirect to the url we are passing in the JSON
+        #string as a variable called newUser
         return redirect(url_for('avaliableRooms', newUser = userJson))
     return render_template("index.html", error = None)
 
@@ -59,8 +62,15 @@ def login():
 @app.route('/rooms')
 @login_required
 def avaliableRooms():
-    temp = location.getLocation()
+    #gets the JSON variabe new user that is passed
+    newUser = request.args['newUser']
     return render_template("rooms.html")
+
+@app.route('/create')
+@login_required
+def newRoom():
+
+    return redirect(url_for('avaliableRooms', newUser = userJson))
 
 
 @app.route('/logout')
