@@ -4,7 +4,7 @@ from flask_login import LoginManager
 from flask_socketio import SocketIO, emit
 from functools import wraps
 
-import location
+import location, roommanager, usermanager
 #from pyback.user import User
 #import pyback.util
 
@@ -48,8 +48,11 @@ def login():
 
     if (request.method == 'POST'):
         userName = request.form['userName']
+        userLocation = location.getLocation()
+        userJson = usermanager.getUser(userName, userLocation)
+
         session['logged_in'] = True
-        return redirect(url_for('avaliableRooms'))
+        return redirect(url_for('avaliableRooms', newUser = userJson))
     return render_template("index.html", error = None)
 
 
