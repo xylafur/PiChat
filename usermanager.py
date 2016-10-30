@@ -1,3 +1,4 @@
+
 import json
 
 def getUser(username,location):
