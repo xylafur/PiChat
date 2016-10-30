@@ -30,7 +30,7 @@
 
 
                   <p>Test Text</p>
-                  
+
 
                 </div>
               </div>
@@ -67,6 +67,15 @@
       //socket.emit('my event', {data: 'I\'m connected!'});
       socket.send('User has connected!')
     });
+
+    //Convert this in react form
+    /*
+    $('form').submit(function(){
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+    */
 
     socket.
   </script>
