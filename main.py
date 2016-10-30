@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for, Response, session, flash
 from flask_login import LoginManager
-from flask_socketio import SocketIO, send, emit
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 from functools import wraps
 
 import location, usermanager, avaliablerooms
@@ -13,6 +13,11 @@ app.config['SECRET_KEY'] = 'supersecret!'
 socketio = SocketIO(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
+def log(alog):
+    print(astr)
+    return alog
 
 #=========== session login stuff===========#
 def login_required(f):
@@ -29,25 +34,31 @@ def login_required(f):
 #=========== socketio stuff ===========#
 #import pyback.pychat
 
-@socketio.on('message') #Generic message event to server, for log purposes.
-def handle_message(message):
-    print('Received message: ' + message)
+@socketio.on('connect')
+def on_connect(data):
+    send('connected.')
+
+@socketio.on('disconnect')
+def on_disconnect(data):
+    global disconnected
+    disconnected = '/'
+
+
+@socketio.on('message')
+def on_message(message):
     send(message)
-    return
+    '''
+    if message == 'test session':
+        session['a'] = 'b'
+    if message not in "test noackargs":
+        return message
+    '''
 
-#Not yet used
-@socketio.on('userconnect')
-def handle_connected(username):
-    log = '%s connected. ' % (username)
-    print(log)
-    send(log)
+def on_join_room(data):
+    join_room(data['room']) #data at room in the json
 
-@socketio.on('chat message')
-def chat_message(username, message):
-    log = '[%s] : %s' % (username, message)
-    print(log)
-    send(log)
-
+def on_leave_room(data):
+    leave_room(data['room']) #data at room in the json
 
 
 #=========== app route stuff ==========#
