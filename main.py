@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, request, redirect, url_for
 from flask_socketio import SocketIO, emit
+import location
+import pyback.pychat
 
 app=Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecret!'
@@ -39,12 +41,12 @@ def login():
 @app.route('/', methods=['POST'])
 def afterLogin():
     userName = request.form['userName']
-    print(url_for('avaliableRooms'))
     return redirect(url_for('avaliableRooms'))
 
 @app.route('/rooms')
 def avaliableRooms():
-    return render_template("rooms.html")
+    temp = location.getLocation()
+    return str(temp)
 
 
 #===========Main===========#
