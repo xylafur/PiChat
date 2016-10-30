@@ -1,0 +1,38 @@
+.fuck{
+  color: blue;
+}
+.chatstuff{
+  width: 100%;
+  height: 250px;
+  color: white;
+}
+
+/* Not used */
+.typeBox{
+  width: 100%;
+  color: black;
+}
+
+/* Override Boostrap Well class */
+.well {
+  width: 100%;
+  min-height: 50vh;
+  height: 50vh;
+  max-height: 50vh;
+  border:1px solid #ccc;
+  /*font:16px/26px Georgia, Garamond, Serif;*/
+  overflow:auto;
+  background-color: white;
+  color:black;
+}
+
+/* Not used */
+.scroll{
+  width: 100%;
+  height: 100%;
+  border:1px solid #ccc;
+  font:16px/26px Georgia, Garamond, Serif;
+  overflow:auto;
+  background-color: white;
+  color:black;
+}

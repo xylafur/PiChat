@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for, Response, session, flash
 from flask_login import LoginManager
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, send, emit
 from functools import wraps
 
 import location
@@ -26,18 +26,25 @@ def login_required(f):
     return wrap
 
 
-
-
 #=========== socketio stuff ===========#
 #import pyback.pychat
 
 @socketio.on('message')
 def handle_message(message):
     print('Received message: ' + message)
+    send(message)
     #handle message shit here
+    return
+
 
 
 #=========== app route stuff ==========#
+
+#Delete this in replace with proper link to room.html
+@app.route('/chatroomtest')
+def chatrm():
+    return render_template("room.html")
+
 @app.route('/', methods=['GET','POST'])
 def login():
     if (request.method == 'GET'):
